@@ -1,0 +1,152 @@
+% -----------------------------------------------------------------------------
+% Latex Template for Wuhan University Thesis
+%
+% Ack to Huang Zhenghua (http://aff.whu.edu.cn/huangzh/)
+%
+% Modified by iamywang
+% Date: Jan 29, 2024
+% -----------------------------------------------------------------------------
+
+% 选项 [forprint]: 交付打印时, 加上此选项, 以消除链接文字之彩色, 避免打印偏淡.
+% 选项 [forlib]: 提交给图书馆的电子版, 需要加上选项 forlib, 以消除空白页和彩色链接.
+\documentclass[forlib,AutoFakeBold=2]{WHUPhd}
+\usepackage{gbt7714}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{titletoc}
+\usepackage{pdfpages}
+
+\hypersetup{hidelinks}
+
+\lstset{
+language=C++,
+showstringspaces=false,
+basicstyle=\small\ttfamily,
+rulesepcolor=\color{gray},
+breaklines=true,
+keywordstyle=\color{purple}\bfseries,
+commentstyle=\color{gray!80!black},
+stringstyle=\color{blue!80!black},
+frame=single,
+flexiblecolumns=true,
+lineskip={-1pt}
+}
+
+\begin{document}
+
+% 封面表头信息
+\fenleihao{TP309}
+\miji{}
+\UDC{}
+\bianhao{10486}
+
+% 封面内容
+\title{XXX关键技术研究}
+\Etitle{Research on Key Techniques for XXXX}
+\author{X\hfill X\hfill X}
+\Eauthor{XXX}
+\Csupervisor{X\hfill X\hfill \hfill 教\hfill 授}
+\Esupervisor{Prof.~XX}
+\Cmajor{网\hfill 络\hfill 空\hfill 间\hfill 安\hfill 全}
+\Emajor{Cyberspace Security}
+\Cspeciality{X\hfill X\hfill X\hfill X}
+\Especiality{XXXX}
+\Schoolname{School of Cyber Science and Engineering}
+\date{二〇二四年一月}
+\Edate{Jan 2024}
+
+\pdfbookmark[0]{封面}{title}
+\maketitle
+
+% 英文封面
+\include{includes/英文封面和创新点}
+
+% 目录页面样式设置为含有页眉
+\frontmatter
+\pagenumbering{Roman}
+\pagestyle{fancy}
+\fancyfancy
+
+% 目录页面样式设置为不含有页眉
+% \frontmatter
+% \pagenumbering{Roman}
+% \pagestyle{oldplain}
+
+% 目录样式
+\titlecontents{chapter}[0em]{\bfseries}{\contentspush{\thecontentslabel \quad}}{}{\titlerule*[4pt]{.}\contentspage}
+\titlecontents{section}[1em]{}{\contentspush{\thecontentslabel \quad}}{}{\titlerule*[4pt]{.}\contentspage}
+\titlecontents{subsection}[2.5em]{}{\contentspush{\thecontentslabel \quad}}{}{\titlerule*[4pt]{.}\contentspage}
+\makeatletter
+\def\@dotsep{0.5}
+\makeatother
+
+% 目录
+\pdfbookmark[0]{目录}{toc}
+\begin{spacing}{1.5}
+\tableofcontents
+\end{spacing}
+\newpage
+
+% 插图索引
+\renewcommand*{\addvspace}[1]{}
+\let\oldnumberline\numberline
+\renewcommand{\numberline}{\figurename~\oldnumberline}
+\makeatletter
+\renewcommand*\l@figure{\@dottedtocline{1}{0em}{2.5em}}
+\makeatother
+\begin{spacing}{1.5}
+\listoffigures
+\end{spacing}
+\newpage
+
+% 表格索引
+\renewcommand{\numberline}{\tablename~\oldnumberline}
+\makeatletter
+\renewcommand*\l@table{\@dottedtocline{1}{0em}{2.5em}}
+\makeatother
+\begin{spacing}{1.5}
+\listoftables
+\end{spacing}
+\cleardoublepage
+
+% 中英文缩略语对照表
+\include{includes/中英文缩略语对照表}
+
+% 摘要
+\include{includes/中英文摘要}
+
+% 正文样式
+\mainmatter
+\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
+\baselineskip=20pt
+\CTEXsetup[nameformat={\normalfont\zihao{-2}\heiti\raggedright},
+titleformat={\normalfont\zihao{-2}\heiti\raggedright},
+number={\arabic{chapter}},name={,},afterskip={4pt},beforeskip={-28pt}]{chapter}
+\pagestyle{fancy}
+\fancyfancy
+
+% 正文
+\include{chapters/chapter1}
+\include{chapters/chapter2}
+\include{chapters/chapter3}
+\include{chapters/chapter4}
+\include{chapters/chapter5}
+\include{chapters/chapter6}
+\include{chapters/chapter7}
+
+% 参考文献
+\cleardoublepage\phantomsection
+\addcontentsline{toc}{chapter}{参考文献}
+\renewcommand{\bibfont}{\zihao{5}}
+\setlength{\bibsep}{0pt}
+\bibliographystyle{gbt7714-numerical}
+\bibliography{bibs/ref1, bibs/ref2, bibs/ref3, bibs/ref4, bibs/ref5, bibs/ref6, bibs/ref7}
+
+% 科研成果和致谢
+\backmatter
+\include{includes/科研成果和致谢}
+
+\cleardoublepage
+\end{document}

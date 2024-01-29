@@ -1,0 +1,87 @@
+% -----------------------------------------------------------------------------
+% Latex Template for Wuhan University Thesis
+%
+% Ack to Huang Zhenghua (http://aff.whu.edu.cn/huangzh/)
+%
+% Modified by iamywang
+% Date: Jan 29, 2024
+% -----------------------------------------------------------------------------
+
+\thispagestyle{empty}
+\renewcommand{\baselinestretch}{1.5}  %下文的行距
+\vspace*{0.5cm}
+
+\begin{center}{\zihao{2} \the\Etitle \par}\end{center}
+
+\vfill
+
+\begin{center}
+\zihao{4}
+% 表格第二列0.5cm
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{rcl}
+\makebox{Candidate}  & \makebox[0.5cm][c]{:}  & \makebox{\the\Eauthor}      \\
+\makebox{Supervisor} & \makebox[0.5cm][c]{:}  & \makebox{\the\Esupervisor}  \\
+\makebox{Major}      & \makebox[0.5cm][c]{:}  & \makebox{\the\Emajor}       \\
+\makebox{Speciality} & \makebox[0.5cm][c]{:}  & \makebox{\the\Especiality}
+\end{tabular}
+
+\vspace*{2cm}
+\begin{center}
+  \iflib % 向图书馆提交电子文档, 使用黑白校徽.
+  \includegraphics[height=4cm]{whulogo.eps}       %%  黑白的. 很小, 只有 10k.
+  \else
+  \ifprint % 文档打印, 使用黑白校徽.
+  \includegraphics[height=4cm]{whulogo.eps}       %%  黑白的.
+  \else
+  \includegraphics[height=4cm]{whulogo.eps}       %%  彩色的.
+  \fi
+  \fi
+\end{center}
+
+
+\zihao{-2}
+\the\Schoolname\\
+{WUHAN UNIVERSITY}
+
+\vspace*{1.0cm}
+
+\the\Edate
+
+\end{center}
+%%%%%%%--判断是否需要空白页-----------------------------
+  \iflib
+  \else
+  \newpage
+  \thispagestyle{empty}
+  \cleardoublepage
+  \fi
+%%%%%%%-------------------------------------------------
+{\pagestyle{empty}
+%%%--- 加入``郑重声明'' --- %%%%%%%%%%%%%%%%%
+\input{includes/原创性声明}%%%%%%%%%%%%%%%%%
+%%% ---加入``武汉大学学位论文使用授权协议书'' ---  %%%%%%
+\input{includes/授权协议书}%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ------------------- 论文创新点----------------------- %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage\vspace*{20pt}\thispagestyle{empty}
+\begin{center}{\zihao{-2}\heiti 论文创新点}\end{center}
+\par\vspace*{30pt}
+\baselineskip=20pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%--请勿删除以下内容 -------------------------------%
+%%%%%%%--判断是否需要空白页-----------------------------%
+  \iflib
+  \let\cleardoublepage\clearpage
+  \else
+  \newpage
+  \thispagestyle{empty}
+  \cleardoublepage
+  \fi
+%%%%%%%---------------------------------------------------%
