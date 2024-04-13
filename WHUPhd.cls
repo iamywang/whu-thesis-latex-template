@@ -1,43 +1,38 @@
-% !Mode:: "TeX:UTF-8"
-\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{WHUPhd}[2015/11/07 4.0 Wuhan University Thesis Template for PHD -- TeX Live 2015  version]
+% -----------------------------------------------------------------------------
+% Latex Template for Wuhan University Thesis
+%
+% Ack to Huang Zhenghua (http://aff.whu.edu.cn/huangzh/)
+%
+% Modified by iamywang
+% Date: Jan 29, 2024
+% Updated: Apr 13, 2024
+% -----------------------------------------------------------------------------
 
-\newif\iflib\libfalse
-\DeclareOption{forlib}{\libtrue}
-\newif\ifprint\printfalse
-\DeclareOption{forprint}{\printtrue}
-\ProcessOptions
+\ProvidesClass{WHUPhd}
 
- \iflib
- \LoadClass[a4paper,zihao=-4,twoside,openany]{ctexbook}
- \else
- \LoadClass[a4paper,zihao=-4,twoside]{ctexbook}
- \fi
+\LoadClass[a4paper,zihao=-4,twoside,openany]{ctexbook}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
 %------------------------ Page layout ----------------------------------
 \RequirePackage{fancyhdr,hyperref}
-\hypersetup{pdfencoding=auto,citecolor=magenta,% magenta , cyan
-            linkcolor=blue}  %%% 邓东升修改
-\RequirePackage[top=3truecm,bottom=2.9truecm,left=2.8truecm,right=2.5truecm,
-            %includehead,%includefoot,
-           xetex]{geometry}    % 页面设置%
+\RequirePackage[top=3truecm,bottom=2.9truecm,left=2.8truecm,right=2.5truecm,xetex]{geometry}
 
-\newtoks\fenleihao        %中图分类号
-\newtoks\bianhao          %学校编号
-\newtoks\UDC               %《国际十进制分类法UDC》的类号
-\newtoks\miji                %密级
-\newtoks\Cmajor           %学科专业中文名
-\newtoks\Emajor           %学科专业英文名
-\newtoks\Especiality      %研究方向
-\newtoks\Cspeciality      %研究方向
-\newtoks\Edate             %英文日期
-\newtoks\Etitle              %英文题目
-\newtoks\Eauthor          %作者英文名
-\newtoks\Esupervisor     %指导教师英文名
-\newtoks\Csupervisor     %指导教师中文名
-\newtoks\Schoolname    %学院英文名
+\newtoks\fenleihao
+\newtoks\bianhao
+\newtoks\UDC
+\newtoks\miji
+
+\newtoks\Cstudentid
+\newtoks\Csupervisor
+\newtoks\Cmajor
+\newtoks\Cspeciality
+
+\newtoks\Etitle
+\newtoks\Eauthor
+\newtoks\Esupervisor
+\newtoks\Eschoolname
+\newtoks\Edate
 
 \setCJKfamilyfont{song}{SimSun}
 \setCJKfamilyfont{hei}{SimHei}
@@ -50,9 +45,9 @@
 \renewcommand{\fangsong}{\CJKfamily{fs}}    % 仿宋
 
 \setmainfont{Times New Roman}
-\setCJKmainfont[ItalicFont={KaiTi}]{SimSun}
-\setCJKsansfont[ItalicFont={KaiTi}]{SimSun}
-\setCJKmonofont{FangSong}
+\setsansfont{Times New Roman}
+\setCJKmainfont{SimSun}
+\setCJKsansfont{KaiTi}
 
 %===============================================页眉设置=====================================================%
 \renewcommand{\headrulewidth}{0.5pt}    %在页眉下画一个0.5pt宽的分隔线
@@ -73,7 +68,6 @@
 \def\maketitle{%
   \null
   \thispagestyle{empty}%
-  %\vspace*{-2cm}
   \begin{center}\leavevmode
     {\fangsong \zihao{4}%
     \begin{tabular}{lp{2cm}p{6cm}lp{2cm}}
@@ -91,20 +85,24 @@
     }
     \par
     \vspace*{15mm} %插入空白
-    {\songti \zihao{2} \ziju{1} %武汉大学 
-    \includegraphics[width=0.4\textwidth]{wudaname.eps}
-    \\[3mm]  \bfseries 博士学位论文}\\
+    {\songti \zihao{2} \ziju{1} %武汉大学
+    \includegraphics[width=0.4\textwidth]{wudaname.eps}\\
+    \bfseries 博士学位论文 \\[8mm]
+    \ziju{0} \zihao{-2}（学术学位）}\\
     \vspace{2cm}
     {\kaishu \zihao{1}  \@title \par}%
 %    \vspace{4cm}
      \vfill\vfill\vfill
-    {\songti\zihao{4}
+    {\songti \zihao{4}
     \setlength{\tabcolsep}{0pt}
     \begin{tabular}{ccc}
       \makebox[5cm][s]{研\hfill 究\hfill 生\hfill 姓\hfill 名} &
       \makebox[0.7cm][r]{：} &
       \makebox[5cm][s]{\@author} \\
-      \makebox[5cm][s]{指\hfill 导\hfill 教\hfill 师\hfill 姓\hfill 名} &
+      \makebox[5cm][s]{学\hfill 号} &
+      \makebox[0.7cm][r]{：} &
+      \makebox[5cm][s]{\the\Cstudentid} \\
+      \makebox[5cm][s]{校\hfill 内\hfill 导\hfill 师\hfill 姓\hfill 名、\hfill 职\hfill 称} &
       \makebox[0.7cm][r]{：} &
       \makebox[5cm][s]{\the\Csupervisor} \\
       \makebox[5cm][s]{学\hfill 科、\hfill 专\hfill 业\hfill 名\hfill 称} &
@@ -118,41 +116,12 @@
     \par
     \vspace{25mm}
     {
-%    {\heiti \zihao{3} \the\year~年 ~\the\month~月 ~\the\day~日 \par}%
     {\heiti \zihao{3} \@date \par}%
     }
-    %\vspace*{-0.7cm}
   \end{center}%
   \null
-  \iflib
-  \else
-  \newpage
-  \thispagestyle{empty}
-  \cleardoublepage
-  \fi
   }
 
-%------------------------ Abstract & Keywords -------------------------
-\newcommand\cnabstractname{摘要}
-\newcommand\enabstractname{\bfseries ABSTRACT}
-\newcommand\cnkeywords[1]{ {\heiti\zihao{-4}\cnkeywordsname: }#1}
-\newcommand\cnkeywordsname{关键词}
-\newcommand\enkeywords[1]{ {\bfseries\zihao{-4}\enkeywordsname: }#1}
-\newcommand\enkeywordsname{Key words}
-
-\newenvironment{cnabstract}{
-    \newpage
-    \chapter[\cnabstractname]{\ziju{1}\cnabstractname}
-    \songti\zihao{-4}
-    \@afterheading}
-    {\par}
-
-\newenvironment{enabstract}{
-    \newpage
-    \chapter{\enabstractname}
-    \songti\zihao{-4}
-    \@afterheading}
-    {\par}
 %%------------------------常用宏包-----------------------------------
 \RequirePackage{amsmath,amssymb}% AMSLaTeX宏包.
 \RequirePackage[amsmath,thmmarks]{ntheorem}
@@ -170,9 +139,7 @@
 \theorembodyfont{\songti} \theoremindent0em
 \theorempreskip{0pt}
 \theorempostskip{0pt}
-%\theoremseparator{\hspace{1em}}
 \theoremnumbering{arabic}
-%\theoremsymbol{} %定理结束时自动添加的标志
 \newtheorem{theorem}{\hspace{2em}定理}[section]
 \newtheorem{definition}{\hspace{2em}定义}[section]
 \newtheorem{lemma}{\hspace{2em}引理}[section]
@@ -196,18 +163,6 @@
 %%%--- \upcite ----------------------------------------
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}  %自定义新命令\upcite, 使参考文献引用以上标出现
 
-%%%%%%%--判断是否需要彩色链接-----------------------------
-  \iflib
-  \hypersetup{allcolors=black}
-  \else
-  \fi
-%%%%%%%-------------------------------------------------
-%%%%%%%--判断是否需要彩色链接-----------------------------
-  \ifprint
-  \hypersetup{allcolors=black}
-  \else
-  \fi
-%%%%%%%-------------------------------------------------
 %%%===  suppress extra inter-line spacing in \list environments
 \makeatletter \setlength\partopsep{0pt}
 \def\@listI{\leftmargin\leftmargini
@@ -273,11 +228,11 @@
 %%% ---- 章节标题设置 ----- %%%%
 \CTEXsetup[nameformat={\normalfont\zihao{-2}\heiti},
 titleformat={\normalfont\zihao{-2}\heiti},
-number={\arabic{chapter}},name={,},afterskip={4pt},beforeskip={-28pt}]{chapter}
-\CTEXsetup[format+={\normalfont\zihao{3}\heiti\raggedright},afterskip={2pt},beforeskip={2pt}]{section}
-\CTEXsetup[format+={\normalfont\zihao{4}\heiti\raggedright},afterskip={2pt},beforeskip={2pt}]{subsection}
-\CTEXsetup[format={\normalfont\zihao{-4}\heiti\raggedright},afterskip={2pt},beforeskip={2pt}]{subsubsection}
-\CTEXoptions[bibname={\zihao{4} 参考文献}]
+number={\arabic{chapter}},name={,},afterskip={8pt},beforeskip={-28pt}]{chapter}
+\CTEXsetup[format+={\normalfont\zihao{3}\heiti\raggedright},afterskip={2pt},beforeskip={0pt}]{section}
+\CTEXsetup[format+={\normalfont\zihao{4}\heiti\raggedright},afterskip={2pt},beforeskip={0pt}]{subsection}
+\CTEXsetup[format+={\normalfont\zihao{-4}\heiti\raggedright},afterskip={2pt},beforeskip={0pt}]{subsubsection}
+\CTEXoptions[bibname={\zihao{4} \bfseries 参考文献}]
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}
 
@@ -286,17 +241,17 @@ number={\arabic{chapter}},name={,},afterskip={4pt},beforeskip={-28pt}]{chapter}
 \renewcommand{\listfigurename}{插图索引}
 \renewcommand{\listtablename}{表格索引}
 
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.39}
 \newcommand\acknowledgement{\backmatter\chapter[致谢]{\ziju{1}致谢}}
-\newcommand\reseachresult{\backmatter\chapter{作者简历及攻博期间发表的科研成果目录}}
+\newcommand\reseachresult{\backmatter\chapter{攻博期间发表的科研成果目录}}
 
 %%%=== 图片路径=== %%%
-\RequirePackage[font=small,textfont=it]{caption}
+\RequirePackage[font=small,textfont=sf,labelfont=sf]{caption}
 \RequirePackage[list=false,hypcap=true]{subcaption}
 \graphicspath{{figures/title/}, {figures/chapter1/},
 {figures/chapter2/}, {figures/chapter3/},
 {figures/chapter4/}, {figures/chapter5/},
-{figures/chapter6/}, {figures/chapter7/}}
+{figures/chapter6/}}
 
 \allowdisplaybreaks
 \endlinechar `\^^M

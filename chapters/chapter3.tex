@@ -5,6 +5,17 @@
 %
 % Modified by iamywang
 % Date: Jan 29, 2024
+% Updated: Apr 13, 2024
 % -----------------------------------------------------------------------------
 
-\chapter{面向XXXXX的XXXXX}\label{chap3}
+\chapter{内存安全问题研究}\label{chap3}
+
+从计算机体系结构的角度来说，内存安全违规（memory safety violation）一般分为两大类：
+
+（1）时间违规（temporal violation）：典型代表为Use-After-Free（UAF）漏洞，即在释放内存后，再次对该内存进行访问。
+
+（2）空间违规（spatial violation）：典型代表为栈溢出（stack overflow）漏洞，即在栈上分配的内存空间不足以存放当前的数据。
+
+而面向返回编程（Return-Oriented Programming，ROP）、面向跳转编程（Jump-Oriented Programming，JOP）和面向调用编程（Call-Oriented Programming，COP）都是基于空间违规的攻击手段，本文将从攻击基本原理、现有芯片级对策和思考三个方面来介绍ROP/JOP/COP。
+
+而ROP攻击产生的一大原因是因为，现代操作系统为了防止攻击者在栈上发起代码注入漏洞，采用了$W \oplus X$的内存保护机制，即栈上的内存空间只能执行，不能写入。因此，攻击者在栈上发起代码注入漏洞时，只能通过覆盖返回地址来控制程序的执行流程，而这种攻击手段就是ROP。

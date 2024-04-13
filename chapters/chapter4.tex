@@ -5,7 +5,18 @@
 %
 % Modified by iamywang
 % Date: Jan 29, 2024
+% Updated: Apr 13, 2024
 % -----------------------------------------------------------------------------
 
-\chapter{针对XXXXX的XXXXX}\label{chap4}
+\chapter{硬件级安全机制研究}\label{chap4}
 
+\section{Intel CET安全机制分析}
+
+Intel CET（Control-Flow Enforcement Technology）是Intel新推出的一项新的硬件级对策，其主要目的是防止攻击者通过ROP/JOP/COP等攻击手段来劫持控制流。
+对于ROP攻击的防护，其基本思想与影子栈（shadow stack）类似，即由操作系统在内存中复制一份程序的内存栈或者是仅仅保留控制流跳转地址。然后，这个影子栈无法由正常的store、load指令进行控制，只能通过专门的指令来进行控制。因此，即使攻击者覆盖了软件栈上的返回地址，但是由于影子栈中仍然保存着原始的跳转地址，因此检查失败后会通过抛出异常来终止程序的执行。
+对于JOP/COP攻击的防护，Intel提出一种叫做IBT（Indirect Branch Tracking）的技术，其基本思想是通过编译器在合理的间接跳转中⽤新的指令做标记，然后程序执行时会检查下一条指令是否为新添加的指令（endbr），如果不是则会抛出\#CP异常。
+
+\section{ARM PAC安全机制分析}
+
+ARM PAC（Pointer Authentication）是ARMv8.3引入的一项新的硬件级对策，其主要通过对指针进行鉴权来防止攻击者通过ROP/JOP/COP等攻击手段来劫持控制流。
+这种防护方法的基本原理是，利用64位地址空间中暂时空闲的高16位来存放指针的鉴权结果（MAC码），然后在每次指针使用前，都会对指针进行鉴权，如果鉴权失败，则会抛出异常来终止程序的执行。

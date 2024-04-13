@@ -5,12 +5,10 @@
 %
 % Modified by iamywang
 % Date: Jan 29, 2024
-% Updated: Feb 23, 2024
+% Updated: Apr 13, 2024
 % -----------------------------------------------------------------------------
 
-% 选项 [forprint]: 交付打印时, 加上此选项, 以消除链接文字之彩色, 避免打印偏淡.
-% 选项 [forlib]: 提交给图书馆的电子版, 需要加上选项 forlib, 以消除空白页和彩色链接.
-\documentclass[forlib,AutoFakeBold=2]{WHUPhd}
+\documentclass[AutoFakeBold=2]{WHUPhd}
 \usepackage{gbt7714}
 \usepackage{listings}
 \usepackage{multirow}
@@ -43,34 +41,35 @@ lineskip={-1pt}
 \bianhao{10486}
 
 % 封面内容
-\title{XXX关键技术研究}
-\Etitle{Research on Key Techniques for XXXX}
-\author{X\hfill X\hfill X}
-\Eauthor{XXX}
-\Csupervisor{X\hfill X\hfill \hfill 教\hfill 授}
-\Esupervisor{Prof.~XX}
+\title{安全计算机体系结构关键技术研究}
+\author{张\hfill 三\hfill 三}
+\Cstudentid{2\hfill 0\hfill 2\hfill 3\hfill 1\hfill 0\hfill 0\hfill 0\hfill 0\hfill 0\hfill 0\hfill 0\hfill 0}
+\Csupervisor{李\hfill 四\hfill \hfill 教\hfill 授}
 \Cmajor{网\hfill 络\hfill 空\hfill 间\hfill 安\hfill 全}
-\Emajor{Cyberspace Security}
-\Cspeciality{X\hfill X\hfill X\hfill X}
-\Especiality{XXXX}
-\Schoolname{School of Cyber Science and Engineering}
-\date{二〇二四年一月}
-\Edate{Jan 2024}
+\Cspeciality{信\hfill 息\hfill 安\hfill 全}
+\date{二〇二四年四月}
+
+\Etitle{Research on Key Techniques for Security Computer Architecture}
+\Eauthor{ZHANG San}
+\Esupervisor{Prof.~LI Si}
+\Eschoolname{School of Cyber Science and Engineering}
+\Edate{Apr 2024}
 
 \pdfbookmark[0]{封面}{title}
 \maketitle
 
 % 英文封面
-\include{includes/英文封面和创新点}
+\include{includes/英文封面}
+
+% 创新点
+\include{includes/创新点}
 
 % 目录页面样式设置为含有页眉
-\frontmatter
 \pagenumbering{Roman}
 \pagestyle{fancy}
 \fancyfancy
 
 % 目录页面样式设置为不含有页眉
-% \frontmatter
 % \pagenumbering{Roman}
 % \pagestyle{oldplain}
 
@@ -109,7 +108,6 @@ lineskip={-1pt}
 \begin{spacing}{1.39}
 \listoftables
 \end{spacing}
-\cleardoublepage
 
 % 中英文缩略语对照表
 \include{includes/中英文缩略语对照表}
@@ -119,12 +117,9 @@ lineskip={-1pt}
 
 % 正文样式
 \mainmatter
-\renewcommand{\baselinestretch}{1.5}
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\baselinestretch}{1.39}
+\renewcommand{\arraystretch}{1.39}
 \baselineskip=20pt
-\CTEXsetup[nameformat={\normalfont\zihao{-2}\heiti\raggedright},
-titleformat={\normalfont\zihao{-2}\heiti\raggedright},
-number={\arabic{chapter}},name={,},afterskip={4pt},beforeskip={-28pt}]{chapter}
 \pagestyle{fancy}
 \fancyfancy
 
@@ -135,19 +130,18 @@ number={\arabic{chapter}},name={,},afterskip={4pt},beforeskip={-28pt}]{chapter}
 \include{chapters/chapter4}
 \include{chapters/chapter5}
 \include{chapters/chapter6}
-\include{chapters/chapter7}
 
 % 参考文献
-\cleardoublepage\phantomsection
+\phantomsection
 \addcontentsline{toc}{chapter}{参考文献}
 \renewcommand{\bibfont}{\zihao{5}}
 \setlength{\bibsep}{0pt}
 \bibliographystyle{gbt7714-numerical}
-\bibliography{bibs/ref1, bibs/ref2, bibs/ref3, bibs/ref4, bibs/ref5, bibs/ref6, bibs/ref7}
+\bibliography{bibs/ref1}
 
 % 科研成果和致谢
 \backmatter
-\include{includes/科研成果和致谢}
+\include{includes/科研成果}
+\include{includes/致谢}
 
-\cleardoublepage
 \end{document}

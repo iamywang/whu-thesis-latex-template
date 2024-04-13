@@ -5,22 +5,20 @@
 %
 % Modified by iamywang
 % Date: Jan 29, 2024
+% Updated: Apr 13, 2024
 % -----------------------------------------------------------------------------
 
 \chapter{绪论}\label{chap1}
 
-\section{研究背景与意义}
-随着XXXX\cite{aciiccmez2010new}发展，
+2018年1月3日， Google Project Zero团队的Jann Horn等安全研究者公开了两组处理器漏洞，
+即Meltdown漏洞~\cite{Lipp2018meltdown}和Spectre漏洞~\cite{kocher2019spectre}。
+其中Meltdown对应的漏洞编号为CVE-2017-5754（流氓数据缓存加载），
+这种攻击“熔化”了由硬件来实现的安全边界，允许用户级别的应用程序“越界”访问系统级的内存，从而造成数据泄露。
+而Spectre对应的漏洞编号为CVE-2017-5753（边界检查绕过）和CVE-2017-5715（分支目标注入），
+利用分支预测的错误推测，让攻击者有能力触发受害者访问特定的敏感数据，并通过隐蔽信道泄露信息。
 
-XXXX
-
-进一步XXXXXX。
-
-\section{国内外研究现状}
-XXXX
-\subsection{XXXX技术研究现状}
-XXXX
-\subsection{XXXX技术研究现状}
-XXXX
-\subsection{XXXX技术研究现状}
-
+不管是Meltdown攻击还是Spectre攻击，其本质都是利用现代处理器的优化策略，
+而这些优化策略在发生错误时，并不会造成架构层面（或者说ISA层面）上数据的变化，
+但是由于现代处理器引入了cache、TLB、缓冲区等微架构元素，攻击者仍然有能力通过观测微架构的变化来获取信息。
+而这些利用乱序执行和分支预测等机制，触发处理器执行错误的指令，
+从而造成秘密数据泄露的方式统称为瞬态执行攻击（Transient Execution Attack）~\cite{xiong2021survey}。
