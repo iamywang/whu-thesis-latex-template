@@ -5,7 +5,7 @@
 %
 % Modified by iamywang
 % Date: Jan 29, 2024
-% Updated: Apr 13, 2024
+% Updated: Apr 23, 2024
 % -----------------------------------------------------------------------------
 
 \ProvidesClass{WHUPhd}
@@ -17,6 +17,9 @@
 %------------------------ Page layout ----------------------------------
 \RequirePackage{fancyhdr,hyperref}
 \RequirePackage[top=3truecm,bottom=2.9truecm,left=2.8truecm,right=2.5truecm,xetex]{geometry}
+
+\newtoks\DegreeA
+\newtoks\DegreeB
 
 \newtoks\fenleihao
 \newtoks\bianhao
@@ -56,12 +59,12 @@
 \let\ps@oldplain\ps@plain
 
  \fancyhf{}  %清除以前对页眉页脚的设置
- \fancyhead[CE]{\zihao{-5}武汉大学博士学位论文}                       %偶数页页眉居中位置的设置. 不填则为空.
+ \fancyhead[CE]{\zihao{-5}武汉大学 \the\DegreeA 学位论文}                       %偶数页页眉居中位置的设置. 不填则为空.
  \fancyhead[CO]{\zihao{-5}\@title}    %L,C,R 是左中右; O,E 是奇偶. 可以自己组合调整.
  \fancyfoot[C]{\zihao{-5}\thepage}                     %页面下侧的设置. 大括号内置空, 表示什么也不填. 反之, 没有此命令的话, 会在页脚出现页码
  \newcommand{\fancyfancy}{\fancypagestyle{plain}{%
   \fancyhf{}
-   \fancyhead[CE]{\zihao{-5}武汉大学博士学位论文}                       %偶数页页眉居中位置的设置. 不填则为空.
+   \fancyhead[CE]{\zihao{-5}武汉大学 \the\DegreeA 学位论文}                       %偶数页页眉居中位置的设置. 不填则为空.
  \fancyhead[CO]{\zihao{-5}\@title}    %L,C,R 是左中右; O,E 是奇偶. 可以自己组合调整.
  \fancyfoot[C]{\zihao{-5}\thepage}}}
 %%%=== 封面 ===%%%
@@ -87,8 +90,8 @@
     \vspace*{15mm} %插入空白
     {\songti \zihao{2} \ziju{1} %武汉大学
     \includegraphics[width=0.4\textwidth]{wudaname.eps}\\
-    \bfseries 博士学位论文 \\[8mm]
-    \ziju{0} \zihao{-2}（学术学位）}\\
+    \bfseries \the\DegreeA 学位论文 \\[8mm]
+    \ziju{0} \zihao{-2}（\the\DegreeB 学位）}\\
     \vspace{2cm}
     {\kaishu \zihao{1}  \@title \par}%
 %    \vspace{4cm}

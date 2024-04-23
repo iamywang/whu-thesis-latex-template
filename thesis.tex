@@ -5,7 +5,7 @@
 %
 % Modified by iamywang
 % Date: Jan 29, 2024
-% Updated: Apr 13, 2024
+% Updated: Apr 23, 2024
 % -----------------------------------------------------------------------------
 
 \documentclass[AutoFakeBold=2]{WHUPhd}
@@ -34,6 +34,12 @@ lineskip={-1pt}
 
 \begin{document}
 
+% 博士 or 硕士
+\DegreeA{博士}
+
+% 学硕/博 or 专硕/博
+\DegreeB{学术}
+
 % 封面表头信息
 \fenleihao{TP309}
 \miji{}
@@ -61,6 +67,12 @@ lineskip={-1pt}
 % 英文封面
 \include{includes/英文封面}
 
+% 原创性声明
+\include{includes/原创性声明}
+
+% 授权协议书
+\include{includes/授权协议书}
+
 % 创新点
 \include{includes/创新点}
 
@@ -68,6 +80,9 @@ lineskip={-1pt}
 \pagenumbering{Roman}
 \pagestyle{fancy}
 \fancyfancy
+
+% 摘要
+\include{includes/中英文摘要}
 
 % 目录页面样式设置为不含有页眉
 % \pagenumbering{Roman}
@@ -111,9 +126,6 @@ lineskip={-1pt}
 
 % 中英文缩略语对照表
 \include{includes/中英文缩略语对照表}
-
-% 摘要
-\include{includes/中英文摘要}
 
 % 正文样式
 \mainmatter
