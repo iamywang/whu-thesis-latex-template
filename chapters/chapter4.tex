@@ -5,7 +5,7 @@
 %
 % Modified by iamywang
 % Date: Jan 29, 2024
-% Updated: Apr 13, 2024
+% Updated: Feb 18, 2025
 % -----------------------------------------------------------------------------
 
 \chapter{硬件级安全机制研究}\label{chap4}
@@ -20,3 +20,26 @@ Intel CET（Control-Flow Enforcement Technology）是Intel新推出的一项新�
 
 ARM PAC（Pointer Authentication）是ARMv8.3引入的一项新的硬件级对策，其主要通过对指针进行鉴权来防止攻击者通过ROP/JOP/COP等攻击手段来劫持控制流。
 这种防护方法的基本原理是，利用64位地址空间中暂时空闲的高16位来存放指针的鉴权结果（MAC码），然后在每次指针使用前，都会对指针进行鉴权，如果鉴权失败，则会抛出异常来终止程序的执行。
+
+\section{相关算法分析}
+
+\begin{algorithm}[h!]
+\zihao{5}
+\caption{算法工作流程}
+\label{alg4.1}
+\KwIn{
+    漏洞类型$rules$,
+    漏洞规约$specification$,
+    操作集合$operations$
+}
+
+\KwOut{
+    漏洞列表$list$
+}
+
+\For{$(i, j, k)$ in $operations$}{
+    \If{$(i, j, k)$ in $rules$}{
+        $list$.append($specification$)
+    }
+}
+\end{algorithm}

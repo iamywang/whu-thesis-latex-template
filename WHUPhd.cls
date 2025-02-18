@@ -5,7 +5,7 @@
 %
 % Modified by iamywang
 % Date: Jan 29, 2024
-% Updated: Apr 23, 2024
+% Updated: Feb 18, 2025
 % -----------------------------------------------------------------------------
 
 \ProvidesClass{WHUPhd}
@@ -136,6 +136,7 @@
 \RequirePackage{bookmark}
 \RequirePackage{arydshln}
 \RequirePackage{colortbl}
+\RequirePackage[ruled,linesnumbered,resetcount,algochapter]{algorithm2e}
 %%----------------------- Theorems -----------------------------------
 \theoremstyle{plain}
 \theoremheaderfont{\heiti}
@@ -243,6 +244,11 @@ number={\arabic{chapter}},name={,},afterskip={8pt},beforeskip={-28pt}]{chapter}
 \renewcommand{\contentsname}{\ziju{1}目录}
 \renewcommand{\listfigurename}{插图索引}
 \renewcommand{\listtablename}{表格索引}
+
+\renewcommand{\algorithmcfname}{算法}
+\renewcommand{\KwIn}{\textbf{输入：}}
+\renewcommand{\KwOut}{\textbf{输出：}}
+\SetKwRepeat{Do}{do}{while}
 
 \renewcommand{\arraystretch}{1.39}
 \newcommand\acknowledgement{\backmatter\chapter[致谢]{\ziju{1}致谢}}
